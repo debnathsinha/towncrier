@@ -1,0 +1,369 @@
+import webapp2
+import pdb
+import urllib
+import httplib2
+try:
+    import json
+except ImportError:
+    import simplejson as json
+import datetime
+import os
+import jinja2
+from google.appengine.api import images
+from SessionBasedHandler import SessionBasedHandler
+from UserModel import LinkedInUser
+from UserModel import Message
+from UserModel import PreCheckinEmailModel
+from google.appengine.api import channel
+import re
+from datetime import datetime
+
+IS_DEV_APPSERVER = 'development' in os.environ.get('SERVER_SOFTWARE', '').lower()
+
+if IS_DEV_APPSERVER:
+    redirect_uri = "http%3A%2F%2Flocalhost%3A8080%2Flinkedinoauthcallback"
+    CLIENT_ID = '780s9463lf31t6'
+    CLIENT_SECRET = 'Ik8mfwDMYGgTn3By'
+else:
+    # redirect_uri = "http%3A%2F%2Fgethelloapp.com%2Flinkedinoauthcallback"
+    redirect_uri = "http://gethelloapp.com/linkedinoauthcallback"
+    CLIENT_ID = '78y3j5z7tnzwt5'
+    CLIENT_SECRET = '1K89KxkniwWTOyrf'
+
+
+ROOT_PATH = os.path.dirname(__file__)
+GMAILYTICS_TEMPLATE_PATH = os.path.join(ROOT_PATH,"templates") 
+JINJA_ENV = jinja2.Environment(
+                               loader=jinja2.FileSystemLoader(GMAILYTICS_TEMPLATE_PATH),
+                                extensions=['jinja2.ext.autoescape'],
+                                autoescape=True)
+
+class MainPage(SessionBasedHandler):
+    
+    def get(self):
+        if 'id' in self.session:
+            self.redirect('/event')
+        if IS_DEV_APPSERVER:
+            template_values = { 
+                                'login_url' : '/api/login',
+
+                                }
+        else:
+            template_values = { 'login_url' : '/api/login'}
+        template = JINJA_ENV.get_template("index.html")
+        self.response.headers.add_header('Access-Control-Allow-Origin', 'https://mail.google.com')
+        self.response.headers.add_header('Access-Control-Allow-Credentials', 'true')
+        self.response.write(template.render(template_values))
+
+class ImageHandler(webapp2.RequestHandler):
+    def get(self):
+        self.response.headers['Content-Type'] = 'image/png'
+        self.response.out.write(greeting.avatar)
+
+class EventPage(SessionBasedHandler):
+    
+    def get(self):
+        if 'id' not in self.session:
+            self.redirect('/')
+        user_agent = self.request.headers['User-Agent']
+        print user_agent
+        token = channel.create_channel("foo")
+        template_values = {
+                            'token': token,
+                            'name': self.session['firstName']
+                            }
+        channel.send_message("foo", "This is a test message")
+        print "Sent message" + str(token)
+        if "Tablet" in user_agent or "iPad" in user_agent:
+            print "Tablet!"
+            template = JINJA_ENV.get_template("event.html")
+        elif "Android; Mobile" in user_agent or "Mobile Safari" in user_agent \
+                or "Opera Mobi" in user_agent or "IEMobile" in user_agent \
+                or re.search('Mobile/([a-zA-Z0-9]+) Safari',user_agent):
+            print "Mobile!"
+            template = JINJA_ENV.get_template("event-mobile.html")
+        else:    
+            print "Not mobile!"
+            template = JINJA_ENV.get_template("event.html")
+        self.response.write(template.render(template_values))
+        
+class LinkedInOAuthCallbackPage(SessionBasedHandler):
+    def get(self):
+    	auth_code = self.request.params["code"]
+    	http = httplib2.Http()
+        resp, tokens = http.request(
+    		"https://www.linkedin.com/uas/oauth2/accessToken?grant_type=authorization_code&client_id="+CLIENT_ID+"&client_secret="+CLIENT_SECRET+"&code="+ auth_code +"&redirect_uri=" + redirect_uri, 
+    		method='POST')
+        tokens = json.loads(tokens)
+        print "Tokens"
+        print tokens
+        print "Access Token"
+        print tokens['access_token']
+        http = httplib2.Http()
+        headers = { 'Authorization': 'Bearer ' + tokens['access_token']}
+        resp, content = http.request("https://api.linkedin.com/v1/people/~/?format=json", method='GET', headers=headers)
+        print redirect_uri
+        print content
+        content = json.loads(content)
+        self.session['firstName'] = content['firstName'] 
+        self.session['lastName'] = content['lastName']
+        self.session['headline'] = content['headline']
+        self.session['id'] = content['id']
+        self.session['profileUrl'] = content['siteStandardProfileRequest']['url']
+        cachedUser = LinkedInUser.query(LinkedInUser.user_id == content['id']).get()
+        if not cachedUser:
+            linkedInUser = LinkedInUser(firstName = content['firstName'], lastName = content['lastName'], headline = content['headline'], 
+                                        profileUrl = content['siteStandardProfileRequest']['url'], user_id = content['id'],
+                                        access_token = tokens['access_token'])
+            linkedInUser.put()
+        else:
+            linkedInUser = cachedUser
+        resp, content = http.request("https://api.linkedin.com/v1/people/~/email-address?format=json", method='GET', headers=headers)
+        email = json.loads(content)
+        linkedInUser.email = email
+        linkedInUser.put()
+        resp, content = http.request("https://api.linkedin.com/v1/people/~/picture-url?format=json", method='GET', headers=headers)
+        content = json.loads(content)
+        linkedInUser.pictureUrl = content
+        linkedInUser.put()
+        resp, content = http.request("https://api.linkedin.com/v1/people/~/positions?format=json", method='GET', headers=headers)
+        content = json.loads(content)
+        print "Positions"
+        print content
+        linkedInUser.positions = content
+        linkedInUser.put()
+        template = JINJA_ENV.get_template("logged-in.html")
+        template_values = {
+            'firstName': linkedInUser.firstName,
+            'lastName': linkedInUser.lastName,
+            'headline': linkedInUser.headline
+        }
+        self.redirect('/event')
+
+class LoginHandler(webapp2.RequestHandler):
+    def get(self):
+    	self.redirect("https://www.linkedin.com/uas/oauth2/authorization?response_type=code&client_id="+CLIENT_ID+"&scope=r_basicprofile%20r_emailaddress&state=DCEEFWF45453sdffef424&redirect_uri=" + redirect_uri)
+        #self.redirect("""https://www.linkedin.com/uas/oauth2/authorization?response_type=code&
+        #						client_id=78nf2p566x9el2&scope=r_fullprofile%20r_network&
+        #						redirect_uri=http://localhost:8080/linkedinoauthcallback""")
+
+class LinkedInFriendsHandler(webapp2.RequestHandler):
+	def get(self, page):
+		json_data=open('srinath.json').read()
+		linkedin_data = json.loads(json_data)
+		page = int(page)
+		page_results = linkedin_data['values'][page*10:page*10 + 9]
+		print (page_results)
+		card_data_set = []
+		for data in page_results:
+			card_data = {}
+			if data['id'] == u'private' or data['firstName'] == u'private' or data['lastName'] == u'private':
+				continue
+			card_data['id'] = data['id']
+			card_data['firstName'] = data['firstName']
+			card_data['lastName'] = data['lastName']
+			if 'pictureUrl' in data:
+				card_data['image'] = data['pictureUrl']
+			card_data['headline'] = data['headline']
+			card_data_set += [card_data]
+		self.response.headers.add_header('Access-Control-Allow-Origin', '*')
+		self.response.headers.add_header('Access-Control-Allow-Credentials', 'true')
+		self.response.headers['Content-Type'] = 'application/json'
+		self.response.write(json.dumps(card_data_set))
+
+class ConnectionHandler(SessionBasedHandler):
+    def get(self):
+        pass
+
+class MessageHandler(SessionBasedHandler):
+    def get(self):
+        if 'id' not in self.session:
+            self.response.set_status(401)
+            self.response.write("Not authenticated")
+            return
+        user_id = self.session['id']
+        messages = []
+        inbound_messages = Message.query(Message.toUser == user_id).fetch()
+        for message in inbound_messages:
+            msg_dict = {}
+            msg_dict['fromUser'] = message.fromUser
+            msg_dict['toUser'] = message.toUser
+            msg_dict['msg'] = message.msg
+            msg_dict['time'] = str(message.time)
+            msg_dict['inboundChat'] = True
+            messages += [msg_dict]
+        outbound_messages = Message.query(Message.toUser == user_id).fetch()
+        for message in outbound_messages:
+            msg_dict['fromUser'] = message.fromUser
+            msg_dict['toUser'] = message.toUser
+            msg_dict['msg'] = message.msg
+            msg_dict['time'] = str(message.time)
+            msg_dict['inboundChat'] = False
+            messages += [msg_dict]
+        self.response.headers['Content-Type'] = 'application/json'
+        self.response.write(json.dumps(messages))
+
+    def post(self):
+        data = json.loads(self.request.body)
+        fromUser = self.session['id']
+        toUser = data['id']
+        if data['message'] == "Hello!":
+            # Initial contact
+            cachedMessage = Message.query(Message.fromUser == fromUser, Message.toUser ==toUser, Message.msg == "Hello!").fetch()
+            if not cachedMessage:
+                message = Message(fromUser=fromUser, toUser=toUser, msg=data['message'])
+                message.put()
+                if IS_DEV_APPSERVER:
+                    reciprocalHelloMessage = Message(toUser=fromUser, fromUser=toUser, msg=data['message'])
+                    reciprocalHelloMessage.put()
+        self.response.headers['Content-Type'] = 'application/json'
+        self.response.write(json.dumps(Message.query(Message.toUser == toUser).fetch()))
+
+class PeoplePage(SessionBasedHandler):
+    def get(self):
+        print self.session
+        if 'id' not in self.session:
+            self.response.set_status(401)
+            self.response.write("Not authenticated")
+            return
+        currentUserId = self.session['id']
+        users = LinkedInUser.query().fetch()
+        loggedInUser = LinkedInUser.query(LinkedInUser.user_id == self.session['id']).get()
+        seenLoggedInUser = False
+        response_data = []
+        i = 0
+        for user in users:
+            i += 1
+            if IS_DEV_APPSERVER and i == 10:
+                # Retreive only 10 people on localhost
+                break
+            response_user_data = {}
+            response_user_data['firstName'] = user.firstName
+            response_user_data['lastName'] = user.lastName
+            response_user_data['headline'] = user.headline
+            if user.pictureUrl:
+                response_user_data['pictureUrl'] = user.pictureUrl
+            else:
+                response_user_data['pictureUrl'] = '/static/img/img-placeholder.jpg'
+            response_user_data['id'] = user.user_id
+            if user.user_id == self.session['id']:
+                # Currently logged in user
+                seenLoggedInUser = True
+                response_user_data['loggedInUser'] = True
+            response_user_data['positions'] = user.positions
+            response_data += [response_user_data]
+            saidHelloMessage = Message.query(Message.fromUser == self.session['id'], Message.toUser == user.user_id).fetch()
+            if saidHelloMessage:
+                response_user_data['saidHelloMessage'] = True
+            receivedHelloMessage = Message.query(Message.fromUser == user.user_id, Message.toUser == self.session['id']).fetch()
+            if receivedHelloMessage:
+                response_user_data['receivedHelloMessage'] = True
+        if not seenLoggedInUser:
+            user = loggedInUser
+            response_user_data = {}
+            response_user_data['firstName'] = user.firstName
+            response_user_data['lastName'] = user.lastName
+            response_user_data['headline'] = user.headline
+            if user.pictureUrl:
+                response_user_data['pictureUrl'] = user.pictureUrl
+            else:
+                response_user_data['pictureUrl'] = '/static/img/img-placeholder.jpg'
+            response_user_data['id'] = user.user_id
+            if user.user_id == self.session['id']:
+                # Currently logged in user
+                seenLoggedInUser = True
+                response_user_data['loggedInUser'] = True
+            response_user_data['positions'] = user.positions
+            response_data += [response_user_data]
+            saidHelloMessage = Message.query(Message.fromUser == self.session['id'], Message.toUser == user.user_id).fetch()
+            if saidHelloMessage:
+                response_user_data['saidHelloMessage'] = True
+            receivedHelloMessage = Message.query(Message.fromUser == user.user_id, Message.toUser == self.session['id']).fetch()
+            if receivedHelloMessage:
+                response_user_data['receivedHelloMessage'] = True
+        self.response.headers.add_header('Access-Control-Allow-Origin', '*')
+        self.response.headers.add_header('Access-Control-Allow-Credentials', 'true')
+        self.response.headers['Content-Type'] = 'application/json'
+        self.response.write(json.dumps(response_data))
+
+class LoadHandler(SessionBasedHandler):
+    def get(self):
+        json_data=open('srinath.json').read()
+        linkedin_data = json.loads(json_data)
+        for value in linkedin_data['values']:
+            if value['firstName'] != 'private' or value['lastName'] != 'private':
+                linkedin_user = LinkedInUser(firstName = value['firstName'], lastName = value['lastName'], headline = value['headline'],
+                                                user_id = value['id'], profileUrl = value['siteStandardProfileRequest']['url'])
+                if 'pictureUrl' in value:
+                    linkedin_user.pictureUrl = value['pictureUrl']
+                linkedin_user.put()
+        self.response.write('Successfully loaded')
+
+class PreCheckinHandler(webapp2.RequestHandler):
+    def post(self):
+        email = self.request.get('name')
+        confid = self.request.get('confid')
+        confname = self.request.get('confname')
+        PreCheckinEmailModel(email=email, confid=confid, confname=confname).put()
+        self.response.write(self.request.get('name'))
+
+class PositionsHandler(webapp2.RequestHandler):
+    def get(self):
+        users = LinkedInUser.query().fetch()
+        positions = []
+        for user in users:
+            http = httplib2.Http()
+            headers = { 'Authorization': 'Bearer ' + user.access_token}
+            print user.firstName
+            print "Cached positions"
+            print user.positions
+            print "Server positions"
+            resp, content = http.request("https://api.linkedin.com/v1/people/~/positions?format=json", method='GET', headers=headers)
+            positions += [content]
+            print content
+        self.response.headers['Content-Type'] = 'application/json'
+        self.response.write(json.dumps(content))
+
+def check_jwt_authenticated(f):
+    def wrapper(*args):
+        auth_string = args[0].request.headers['Authorization']
+        auth_string_tokens = auth_string.split(" ")
+        if auth_string_tokens[0] == "Bearer":
+            token = auth_string_tokens[1]
+            decoded_token = jwt.decode(token, MobileJWTSecret)
+            user_id = decoded_token['user_id'] 
+        if not user_id:
+            args[0].response.set_status(403)
+            args[0].response.write('Not authenticated')
+            return
+        else:
+            return f(*args)
+    return wrapper
+
+config = {}
+config['webapp2_extras.sessions'] = {
+                                     'secret_key' : 'cosightsecret',
+                                     'cookie_name': 'cosightsession'
+                                     }
+
+routes = [
+    ('/', MainPage),
+    ('/event', EventPage),
+    ('/people', PeoplePage),
+    ('/connect', ConnectionHandler),
+    ('/message', MessageHandler),
+    ('/positions', PositionsHandler),
+    ('/load', LoadHandler),
+    ('/precheckin', PreCheckinHandler),
+    (r'/api/login', LoginHandler),
+    (r'/linkedin/page/(\d+)', LinkedInFriendsHandler),
+    ('/linkedinoauthcallback', LinkedInOAuthCallbackPage),
+]
+
+def app():
+    from google.appengine.ext.appstats import recording
+    app = webapp2.WSGIApplication(routes, config = config, debug=True)
+    app = recording.appstats_wsgi_middleware(app)
+    return app
+
+application = app()

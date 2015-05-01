@@ -1,0 +1,294 @@
+<!doctype html>
+<html class="no-js" lang="">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimal-ui">
+    <title> Town Crier বাংলা </title>
+    <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+    <link href="//fonts.googleapis.com/css?family=Lato:100,400,400italic,700,900%7COswald:300,400,700%7CGentium+Basic:400,400italic&amp;subset=latin,latin,latin" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="assets/css/extras.min.css">
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/css/theme.min.css">
+    <link rel="stylesheet" href="assets/css/magazine.min.css">
+    <link rel="stylesheet" href="assets/css/towncrier.css">
+    <link rel="apple-touch-icon" sizes="57x57" href="assets/images/favicons/apple-touch-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="assets/images/favicons/apple-touch-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="assets/images/favicons/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="assets/images/favicons/apple-touch-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="assets/images/favicons/apple-touch-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="assets/images/favicons/apple-touch-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="assets/images/favicons/apple-touch-icon-144x144.png">
+    <link rel="icon" type="image/png" href="assets/images/favicons/favicon-32x32.png" sizes="32x32">
+    <link rel="icon" type="image/png" href="assets/images/favicons/favicon-96x96.png" sizes="96x96">
+    <link rel="icon" type="image/png" href="assets/images/favicons/favicon-16x16.png" sizes="16x16">
+    <link rel="shortcut icon" href="assets/images/favicons/favicon.ico"> </head>
+
+<body class="pace-on pace-minimal">
+    <div class="pace-overlay"></div>
+    <div id="masthead" class="menu navbar navbar-static-top navbar-sticky header-logo-left-menu-right oxy-mega-menu" role="banner">
+        <div class="container">
+            <!-- setting a logo -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".main-navbar">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a href="../index.html" class="navbar-brand">
+                    <img src="/magazine/assets/images/magazine/logo-inv-200px.png" alt="One of the best themes ever">
+                </a>
+            </div>
+            <div class="nav-container">
+                <!-- setting a logo end-->
+                <nav class="collapse navbar-collapse logo-navbar  main-navbar navbar-left" role="navigation">
+                    <div class="menu-container">
+                        <ul class="nav navbar-nav navbar-right">
+                            <li class=" "> <a href="/" class="dropdown-toggle" data-toggle="dropdown">Home</a> </li>
+                            <li class=" "> <a href="/news.html">News</a> </li>
+                            <li class=" "> <a href="/stories.html">Stories</a> </li>
+                        </ul>
+                    </div>
+                </nav>
+            </div>
+        </div>
+    </div>
+    <div id="content" role="main">
+        <article>
+            <section class="section">
+                <div class="container">
+                    <div class="row element-top-50 element-bottom-50">
+                        <div class="col-md-9 blog-list-layout-left">
+                            <article class="post">
+                                <div class="post-media">
+                                    <div class="figure fade-in text-center figcaption-middle">
+                                        <a class="figure-image" href="/magazine/assets/images/magazine/drone.jpg"><img alt="দ্রোন ব্যবহার" src="/magazine/assets/images/magazine/drone.jpg">
+                                            <div class="figure-overlay">
+                                                <div class="figure-overlay-container">
+                                                    <div class="figure-caption"> <span class="figure-overlay-icons">
+                                                </span> </div>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </div>
+                                </div>
+                                <header class="post-head small-screen-center">
+                                    <h2 class="post-title">
+                                <a href="magazine-post-drone-nirbaachon.html" rel="bookmark" title="Permalink to drone-nirbaachon" class="bengali-header-text">দ্রোন ব্যবহার করেছেন পশ্চিম বঙ্গ রাজ্য নির্বাচন কমিশন</a>
+                            </h2>
+                                    <div class="post-details"> <span class="post-date">
+                                    <i class="icon-clock"></i> April 24, 2015
+                                </span> <span class="post-author">
+                                    <i class="icon-head"></i>
+                                    <a href="#">Srinath</a>
+                                </span> </div>
+                                </header>
+                                <div class="post-body">
+                                    <p class="bengali-text">শনিবার ১৮ এপ্রিল ও ২৫ এপ্রিল পুরসভা নির্বাচনের দিন ঠিক হয়েছে পশ্চিম বঙ্গে। এই প্রথম বার ‘দ্রোন’ ব্যবহার করা হয়েছে।</p>
+                                </div>
+                                <div class="small-screen-center post-more"> <a class="post-more-link" href="magazine-post-drone-nirbaachon.html">read more</a> </div>
+                            </article>
+                            <article class="post">
+                                <div class="post-media">
+                                    <div class="figure fade-in text-center figcaption-middle">
+                                        <a class="figure-image" href="/magazine/assets/images/magazine/kolkatapolice.jpg"><img alt="দ্রোন ব্যবহার" src="/magazine/assets/images/magazine/kolkatapolice.jpg">
+                                            <div class="figure-overlay">
+                                                <div class="figure-overlay-container">
+                                                    <div class="figure-caption"> <span class="figure-overlay-icons">
+                                                </span> </div>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </div>
+                                </div>
+                                <header class="post-head small-screen-center">
+                                    <h2 class="post-title">
+                                <a href="magazine-post-nirbaachon-shonghorsho.html" rel="bookmark" title="Permalink to nirbaachon-shonghorsho" class="bengali-header-text">আরও নির্বাচন কেন্দ্রিক সংঘর্ষ</a>
+                            </h2>
+                                    <div class="post-details"> <span class="post-date">
+                                    <i class="icon-clock"></i> April 24, 2015
+                                </span> <span class="post-author">
+                                    <i class="icon-head"></i>
+                                    <a href="#">Srinath</a>
+                                </span> </div>
+                                </header>
+                                <div class="post-body">
+                                    <p class="bengali-text">২৫ এপ্রিলে ৯০ টা কেন্দ্রের পুরসভার নির্বাচনের দ্বীতিয় পর্ব হবে। কিন্তু সেই নিয়ে পুলিশ ও মানুষ জন সকলেই চিন্তিত। ইতিমধ্যে বিভিন্ন পার্টির সংসদদের মধ্যে নানান সংঘর্ষ চলছে।</p>
+                                </div>
+                                <div class="small-screen-center post-more"> <a class="post-more-link" href="magazine-post-nirbaachon-shonghorsho.html">read more</a> </div>
+                            </article>
+                            <article class="post">
+                                <div class="post-media">
+                                    <div class="figure fade-in text-center figcaption-middle">
+                                        <a class="figure-image" href="/magazine/assets/images/magazine/ktp.png"><img alt="দ্রোন ব্যবহার" src="/magazine/assets/images/magazine/ktp.png">
+                                            <div class="figure-overlay">
+                                                <div class="figure-overlay-container">
+                                                    <div class="figure-caption"> <span class="figure-overlay-icons">
+                                                </span> </div>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </div>
+                                </div>
+                                <header class="post-head small-screen-center">
+                                    <h2 class="post-title">
+                                <a href="magazine-post-nirbaachon-social-media.html" rel="bookmark" title="Permalink to nirbaachon-social-media.html" class="bengali-header-text">নির্বাচনে সোশ্যাল মিডিয়া ব্যবহার</a>
+                            </h2>
+                                    <div class="post-details"> <span class="post-date">
+                                    <i class="icon-clock"></i> April 24, 2015
+                                </span> <span class="post-author">
+                                    <i class="icon-head"></i>
+                                    <a href="#">Srinath</a>
+                                </span> </div>
+                                </header>
+                                <div class="post-body">
+                                    <p class="bengali-text">নির্বাচনের নিয়ম অনুযায়ী ভোটের দিনের চব্বিশ ঘন্টার পূর্বে পার্টিদের প্রচার বন্ধ করার কথা। কিন্তু নেতারা ভোটের এক দিন আগে ফেসবুকে ঘোষণা করেন, “এবার থেকে সব ধরণের ক্যান্সার, হার্টের সমস্যা ও রক্তের নানা সমস্যার চিকিত্সা, সরকারী হাঁসপাতালে নিখর্চায়ে করা হবে”। </p>
+                                </div>
+                                <div class="small-screen-center post-more"> <a class="post-more-link" href="magazine-post-nirbaachon-social-media.html">read more</a> </div>
+                            </article>
+                            <article class="post">
+                                <div class="post-media">
+                                    <div class="figure fade-in text-center figcaption-middle">
+                                        <a class="figure-image" href="/magazine/assets/images/magazine/ankitkeshri.jpg"><img alt="দ্রোন ব্যবহার" src="/magazine/assets/images/magazine/ankitkeshri.jpg">
+                                            <div class="figure-overlay">
+                                                <div class="figure-overlay-container">
+                                                    <div class="figure-caption"> <span class="figure-overlay-icons">
+                                                </span> </div>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </div>
+                                </div>
+                                <header class="post-head small-screen-center">
+                                    <h2 class="post-title">
+                                <a href="magazine-post-ankit-keshri-1.html" rel="bookmark" title="Permalink to ankit-keshri-1.html" class="bengali-header-text">ইস্ট বেঙ্গলের তরুণ খেলোয়ার অঙ্কিত কেশরীর মৃত্যু</a>
+                            </h2>
+                                    <div class="post-details"> <span class="post-date">
+                                    <i class="icon-clock"></i> April 24, 2015
+                                </span> <span class="post-author">
+                                    <i class="icon-head"></i>
+                                    <a href="#">Srinath</a>
+                                </span> </div>
+                                </header>
+                                <div class="post-body">
+                                    <p class="bengali-text">গত সোমবার সকালে ইস্ট বেঙ্গলের তরুণ ক্রিকেটার অঙ্কিত কেশরী (২১) মারা গেলেন হৃদরোগে আক্রান্ত হয়ে। গত শুক্রবার অঙ্কিত ইস্ট বেঙ্গলের হয়ে খেলছিলেন ওয়ান-ডে ম্যাচ ভবানীপুর ক্লাবের বিরুদ্ধে। </p>
+                                </div>
+                                <div class="small-screen-center post-more"> <a class="post-more-link" href="magazine-post-ankit-keshri-1.html">read more</a> </div>
+                            </article>
+                            <article class="post">
+                                <div class="post-media">
+                                    <div class="figure fade-in text-center figcaption-middle">
+                                        <a class="figure-image" href="/magazine/assets/images/magazine/ewaste.gif"><img alt="অঙ্কিত কেশরী" src="/magazine/assets/images/magazine/ewaste.gif">
+                                            <div class="figure-overlay">
+                                                <div class="figure-overlay-container">
+                                                    <div class="figure-caption"> <span class="figure-overlay-icons">
+                                                </span> </div>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </div>
+                                </div>
+                                <header class="post-head small-screen-center">
+                                    <h2 class="post-title">
+                                <a href="magazine-post-wb-eborjyo.html" rel="bookmark" title="Permalink to wb-eborjyo.html" class="bengali-header-text">পশ্চিম বঙ্গের ই-বর্জ্য হাব তৈরী করতে জমির অভাবে বিলম্ব</a>
+                            </h2>
+                                    <div class="post-details"> <span class="post-date">
+                                    <i class="icon-clock"></i> April 24, 2015
+                                </span> <span class="post-author">
+                                    <i class="icon-head"></i>
+                                    <a href="#">Srinath</a>
+                                </span> </div>
+                                </header>
+                                <div class="post-body">
+                                    <p class="bengali-text">রাজ্যের বৈদ্যুতিক বর্জ্য পরিশোধন প্রকল্প আটকে রয়েছে দুই থেকে তিন একরের জমির অভাবে। সেই জন্যই বর্জ্য হাব তৈরী হয়নি।</p>
+                                </div>
+                                <div class="small-screen-center post-more"> <a class="post-more-link" href="magazine-post-wb-eborjyo.html">read more</a> </div>
+                            </article>
+                        </div>
+                        <div class="col-md-3 sidebar">
+                            <div class="sidebar-widget widget_recent_entries" id="recent-posts-4">
+                                <h3 class="sidebar-header">Recent posts</h3>
+                                <ul>
+                                    <li class="clearfix">
+                                        <div class="post-icon">
+                                            <a href="magazine-post-drone-nirbaachon.html" title="দ্রোন ব্যবহার করেছেন পশ্চিম বঙ্গ রাজ্য নির্বাচন কমিশন"> <img alt="drone" height="150" src="assets/images/magazine/drone.jpg" width="150"> </a>
+                                        </div> <a href="magazine-post-drone-nirbaachon.html" title="দ্রোন ব্যবহার করেছেন পশ্চিম বঙ্গ রাজ্য নির্বাচন কমিশন" class="bengali-text bengali-sidebar">দ্রোন ব্যবহার করেছেন পশ্চিম বঙ্গ রাজ্য নির্বাচন কমিশন</a> <small class="post-date">April 24,
+                                2015</small> </li>
+                                    <li class="clearfix">
+                                        <div class="post-icon">
+                                            <a href="magazine-post-nirbaachon-shonghorsho.html" title="আরও নির্বাচন কেন্দ্রিক সংঘর্ষ"> <img alt="সংঘর্ষ" height="150" src="assets/images/magazine/kolkatapolice.jpg" width="150"> </a>
+                                        </div> <a href="magazine-post-nirbaachon-shonghorsho.html" title="আরও নির্বাচন কেন্দ্রিক সংঘর্ষ" class="bengali-text bengali-sidebar">আরও নির্বাচন কেন্দ্রিক সংঘর্ষ</a> <small class="post-date">April 24, 2015</small> </li>
+                                    <li class="clearfix">
+                                        <div class="post-icon">
+                                            <a href="magazine-post-nirbaachon-social-media.html" title="নির্বাচনে সোশ্যাল মিডিয়া ব্যবহার"> <img alt="সোশ্যাল মিডিয়া ব্যবহার" height="150" src="assets/images/magazine/ktp.png" width="150"> </a>
+                                        </div> <a href="magazine-post-nirbaachon-social-media.html" title="নির্বাচনে সোশ্যাল মিডিয়া ব্যবহার" class="bengali-text bengali-sidebar">নির্বাচনে সোশ্যাল মিডিয়া ব্যবহার</a> <small class="post-date">April 24, 2015</small> </li>
+                                    <li class="clearfix">
+                                        <div class="post-icon">
+                                            <a href="magazine-post-ankit-keshri-1.html" title="ইস্ট বেঙ্গলের তরুণ খেলোয়ার অঙ্কিত কেশরীর মৃত্যু"> <img alt="অঙ্কিত কেশরী" height="150" src="assets/images/magazine/ankitkeshri.jpg" width="150"> </a>
+                                        </div> <a href="magazine-post-ankit-keshri-1.html" title="ইস্ট বেঙ্গলের তরুণ খেলোয়ার অঙ্কিত কেশরীর মৃত্যু" class="bengali-text bengali-sidebar">ইস্ট বেঙ্গলের তরুণ খেলোয়ার অঙ্কিত কেশরীর মৃত্যু</a> <small class="post-date">April 24, 2015</small> </li>
+                                    <li class="clearfix">
+                                        <div class="post-icon">
+                                            <a href="magazine-post-wb-eborjyo.html" title="পশ্চিম বঙ্গের ই-বর্জ্য হাব তৈরী করতে জমির অভাবে বিলম্ব"> <img alt="ই-বর্" height="150" src="assets/images/magazine/ewaste.gif" width="150"> </a>
+                                        </div> <a href="magazine-post-wb-eborjyo.html" title="পশ্চিম বঙ্গের ই-বর্জ্য হাব তৈরী করতে জমির অভাবে বিলম্ব" class="bengali-text bengali-sidebar">পশ্চিম বঙ্গের ই-বর্জ্য হাব তৈরী করতে জমির অভাবে বিলম্ব</a> <small class="post-date">April 24, 2015</small> </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </article>
+        <footer id="footer">
+            <section class="section">
+                <div class="container">
+                    <div class="row element-top-40 element-bottom-40 footer-columns-3">
+                        <div class="col-sm-3"></div>
+                        <div class="col-sm-6">
+                            <div class="sidebar-widget widget_text">
+                                <h3 class="sidebar-header text-center small-screen-center"> Town Crier বাংলা </h3>
+                                <div class="textwidget text-center small-screen-center"> Launched in early 2015, <strong>Town Crier বাংলা</strong> is a forum for Bengalis to enjoy and celebrate language, literature, and culture. </div>
+                            </div>
+                            <div class="sidebar-widget widget_social text-center small-screen-center" id="oxywidgetsocial-1">
+                                <ul class="unstyled inline social-icons social-simple social-normal">
+                                    <li>
+                                        <a data-iconcolor="#00acee" href="https://twitter.com/gettowncrier"> <i class="fa fa-twitter"></i> </a>
+                                    </li>
+                                    <li>
+                                        <a data-iconcolor="#3b5998" href="https://www.facebook.com/gettowncrier"> <i class="fa fa-facebook"></i> </a>
+                                    </li>
+                                    <li>
+                                        <a data-iconcolor="#634d40" href="#"> <i class="fa fa-instagram"></i> </a>
+                                    </li>
+                                    <li>
+                                        <a data-iconcolor="#3b9999" href="https://soundcloud.com/gettowncrier"> <i class="fa fa-soundcloud"></i> </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </footer>
+    </div>
+    <a class="go-top go-top-square" href="javascript:void(0)"> <i class="fa fa-angle-up"></i> </a>
+    <script type="text/javascript">
+        var oxyThemeData = {
+            navbarHeight: 120,
+            navbarScrolled: 120,
+            navbarScrolledPoint: 62,
+            menuClose: 'off',
+            scrollFinishedMessage: 'No more items to load.',
+            hoverMenu: {
+                hoverActive: false,
+                hoverDelay: 200,
+                hoverFadeDelay: 200
+            },
+            siteLoader: 'on'
+        };
+    </script>
+    <script src="assets/js/theme.min.js"></script>
+    <!-- load contact form js -->
+    <script src="assets/js/contact.min.js"></script>
+</body>
+
+</html>

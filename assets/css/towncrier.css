@@ -1,0 +1,27 @@
+@font-face {
+    font-family: "ShonarBangla";
+    src: url("../fonts/Shonar.ttf")
+    /* TTF file for CSS3 browsers */
+}
+
+@font-face {
+    font-family: "ShonarBangla";
+    src: url("../fonts/Shonarb.ttf");
+    font-weight: bold;
+    /* TTF file for CSS3 browsers */
+}
+
+.bengali-text {
+    font-family: 'ShonarBangla';
+    font-size: 24px;
+}
+
+.bengali-header-text {
+    font-family: 'ShonarBangla';
+    font-size: 30px !important;
+    font-weight: bold !important;
+}
+
+.bengali-text.bengali-sidebar {
+    line-height: 0.5;
+}
