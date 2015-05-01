@@ -14,11 +14,12 @@
 .bengali-text {
     font-family: 'ShonarBangla';
     font-size: 24px;
+    font-weight: bold !important;
 }
 
 .bengali-header-text {
     font-family: 'ShonarBangla';
-    font-size: 30px !important;
+    font-size: 36px !important;
     font-weight: bold !important;
 }
 
